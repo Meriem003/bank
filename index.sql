@@ -18,7 +18,7 @@ CREATE TABLE CurrentAccount (
     account_id INT PRIMARY KEY,
     retrait DECIMAL(10, 2),
     FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
-);
+); 
 
 CREATE TABLE BusinessAccount (
     account_id INT PRIMARY KEY,

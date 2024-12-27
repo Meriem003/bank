@@ -105,7 +105,7 @@
     </div>
 </form>
 <?php
-include 'connexion.php';
+include 'config.php';
 include './classes/classAccount.php';
 
 ?>
