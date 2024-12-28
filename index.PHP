@@ -36,6 +36,7 @@ include('./config.php');
       <th class="border border-gray-300 px-10 py-2">frias/retrait/taux_Intert</th>
     </tr>
   </thead>
+  
   <tbody>
   </tbody>
 </table>

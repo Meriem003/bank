@@ -1,27 +1,28 @@
-CREATE DATABASE NeoBank;
+CREATE DATABASE bankneo;
 
-CREATE TABLE Account (
+CREATE TABLE account (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name_user VARCHAR(50) NOT NULL,
-    account_type ENUM('savings', 'current', 'business') NOT NULL,
-    nmr_compte VARCHAR(50) NOT NULL,
-    balance DECIMAL(10, 2) NOT NULL
+    titulaire VARCHAR(255) NOT NULL,
+    soldeInit DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE SavingAccount (
-    account_id INT PRIMARY KEY,
-    taux_Interet DECIMAL(5, 2),
-    FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
+CREATE TABLE savingaccount (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    minimumSolde DECIMAL(10, 2) NOT NULL,
+    accountNum INT NOT NULL,
+    FOREIGN KEY (accountNum) REFERENCES account(id)
 );
 
-CREATE TABLE CurrentAccount (
-    account_id INT PRIMARY KEY,
-    retrait DECIMAL(10, 2),
-    FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE
-); 
+CREATE TABLE currentaccount (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sommeLimit DECIMAL(10, 2) NOT NULL,
+    accountNum INT NOT NULL,
+    FOREIGN KEY (accountNum) REFERENCES account(id)
+);
 
-CREATE TABLE BusinessAccount (
-    account_id INT PRIMARY KEY,
-    frais DECIMAL(10, 2),
-    FOREIGN KEY (account_id) REFERENCES Account(id) ON DELETE CASCADE 
+CREATE TABLE businessaccount (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    limitCredit DECIMAL(10, 2) NOT NULL,
+    accountNum INT NOT NULL,
+    FOREIGN KEY (accountNum) REFERENCES account(id)
 );

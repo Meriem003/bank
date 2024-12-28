@@ -1,21 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <?php
-  include('./config.php');
-  ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="../src/output.css" rel="stylesheet">
-  <style>
-    .Gk-joueur {
-      display: none;
-    }
-    h1{
-      text-align: center;
-    }
-  </style>
   <title>Dashboard</title>
 </head>
 <body class="bg-gray-100">
@@ -40,75 +29,85 @@
       <!-- User Registration Form -->
       <section id="userForm" class="mb-8">
         <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
-        <form id="player-form" method="POST">
+        <form method="POST"> 
     <!-- numero de compte -->
     <div class="mb-4">
-        <label for="nrCompte" class="block text-sm font-medium text-gray-700">Entrez le numero de compte</label>
-        <input type="number" id="nrCompte" name="nrCompte" placeholder="numero de compte" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        <label for="nrCompte" class="block text-sm font-medium text-gray-700">Entrez le numéro de compte</label>
+        <input type="number" id="nrCompte" name="nrCompte" placeholder="Numéro de compte" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
     </div>
 
     <!-- full name -->
     <div class="mb-4">
         <label for="name" class="block text-sm font-medium text-gray-700">Entrez le nom et prénom</label>
-        <input type="text" id="name" name="name" placeholder="nom prénom" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        <input type="text" id="name" name="name" placeholder="Nom Prénom" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
     </div>
 
     <!-- solde-->
     <div class="mb-4">
-        <label for="balance" class="block text-sm font-medium text-gray-700">Entrez balance</label>
-        <input type="number" id="balance" name="balance" placeholder="balance" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        <label for="balance" class="block text-sm font-medium text-gray-700">Entrez le solde initial</label>
+        <input type="number" id="balance" name="balance" placeholder="Solde initial" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
     </div>
 
     <!-- type de compte -->
     <div class="mb-4">
-        <label for="compte" class="block text-sm font-medium text-gray-700">type compte</label>
+        <label for="compte" class="block text-sm font-medium text-gray-700">Type de compte</label>
         <select id="compte" name="compte" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-            <option value="CURRENTAccount">current Account</option>
             <option value="SavingAccount">Saving Account</option>
-            <option value="businessAccount">business Account</option>
+            <option value="CURRENTAccount">Current Account</option>
+            <option value="businessAccount">Business Account</option>
         </select>
     </div>
 
-    <!-- SavingAccount -->
-    <div class="mb-4">
-        <div id="Saving-Account" class="grid grid-cols-2 gap-4" style="display: none;">
-            <div class="form-group">
-                <label for="taux_Intert">taux_Intert</label>
-                <input type="text" id="taux_Intert" name="taux_Intert" placeholder="Entrez taux_Intert" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
+    <!-- Champs spécifiques -->
+    <div id="Saving-Account" style="display: none;">
+        <div class="mb-4">
+            <label for="minimumBalance" class="block text-sm font-medium text-gray-700">Minimum Balance</label>
+            <input type="number" id="minimumBalance" name="minimumBalance" placeholder="Minimum Balance" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
         </div>
     </div>
 
-    <!-- CURRENTAccount -->
-    <div class="mb-4">
-        <div id="CURRENT-Account" class="grid grid-cols-2 gap-4" style="display: none;">
-            <div class="form-group">
-                <label for="retrait">retrait</label>
-                <input type="text" id="retrait" name="retrait" placeholder="Entrez retrait" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
+    <div id="CURRENT-Account" style="display: none;">
+        <div class="mb-4">
+            <label for="withdrawalLimit" class="block text-sm font-medium text-gray-700">Withdrawal Limit</label>
+            <input type="number" id="withdrawalLimit" name="withdrawalLimit" placeholder="Withdrawal Limit" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
         </div>
     </div>
 
-    <!-- businessAccount -->
-    <div class="mb-4">
-        <div id="businessAccount" class="grid grid-cols-2 gap-4" style="display: none;">
-            <div class="form-group">
-                <label for="frias">frias</label>
-                <input type="text" id="frias" name="frias" placeholder="Entrez frias" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
+    <div id="businessAccount" style="display: none;">
+        <div class="mb-4">
+            <label for="creditLimit" class="block text-sm font-medium text-gray-700">Credit Limit</label>
+            <input type="number" id="creditLimit" name="creditLimit" placeholder="Credit Limit" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
         </div>
     </div>
 
-    <!-- Submit Button -->
     <div class="mb-4">
-        <button type="submit" class="w-full px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">Submit</button>
+        <button type="submit" name="envoyer" class="w-full px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-sm focus:outline-none">Créer le compte</button>
     </div>
 </form>
+
 <?php
-include 'config.php';
+include './config.php';
 include './classes/classAccount.php';
 
+if (isset($_POST["envoyer"])) {
+    $titulaire = $_POST["name"];
+    $solde = $_POST["balance"];
+    $type = $_POST["compte"];
+
+    $valeur = null;
+    if ($type == 'SavingAccount') {
+        $valeur = $_POST["minimumBalance"];
+    } elseif ($type == 'CURRENTAccount') {
+        $valeur = $_POST["withdrawalLimit"];
+    } elseif ($type == 'businessAccount') {
+        $valeur = $_POST["creditLimit"];
+    }
+
+    $compte = new Account($titulaire, $solde, $pdo);
+    $compte->créer ($type, $valeur);
+}
 ?>
+
 </div>
 </section>
   <script src="../src/scripts/sendRequest.js?v=<?php echo time(); ?>"></script>
