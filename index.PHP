@@ -37,11 +37,20 @@
   </thead>
   <tbody>
   <?php
-include './config.php'; 
+include_once './config.php';
 include './classes/classAccount.php';
 include './crud./readall.php';
-?>
 
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $account = new Account(null, null, $pdo);
+  $account->delete($id);
+  header("Location: index.php");
+  exit();
+} else {
+  echo "No account ID specified!";
+}
+?>
 </tbody>
 </table>
 </div>

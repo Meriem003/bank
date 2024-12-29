@@ -12,8 +12,8 @@ foreach ($accounts as $row) {
     echo "<td class='border border-gray-300 px-10 py-2'>" . ($row['limitCredit'] ?? 'null') . "</td>";
 
     echo "<td class='border border-gray-300 px-10 py-1'>
-            <button><a href='afficher.php?id=" . $row['id'] . "' class='edit'>❌</a></button>
-            <button><a href='afficher.php?id=" . $row['id'] . "' class='delete-btn'>✏️</a></button>
+            <a href='afficher.php?id=" . $row['id'] . "' class='edit'>❌</a>
+            <a href='afficher.php?id=" . $row['id'] . "' class='delete-btn'>✏️</a>
           </td>";
     echo "</tr>";
 }

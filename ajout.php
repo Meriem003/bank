@@ -30,12 +30,6 @@
       <section id="userForm" class="mb-8">
         <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
         <form method="POST"> 
-    <!-- numero de compte -->
-    <div class="mb-4">
-        <label for="nrCompte" class="block text-sm font-medium text-gray-700">Entrez le numéro de compte</label>
-        <input type="number" id="nrCompte" name="nrCompte" placeholder="Numéro de compte" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-    </div>
-
     <!-- full name -->
     <div class="mb-4">
         <label for="name" class="block text-sm font-medium text-gray-700">Entrez le nom et prénom</label>
@@ -85,7 +79,7 @@
     </div>
 </form>
 <?php
-include './config.php';
+include_once './config.php';
 include './classes/classAccount.php';
 include './crud./addAccount.php';
 ?>

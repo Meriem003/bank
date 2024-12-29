@@ -1,5 +1,5 @@
 <?php
-include './config.php';
+include_once './config.php';
 
 class Account {
     public $id;
@@ -45,7 +45,6 @@ class Account {
         } elseif ($type == 'businessAccount') {
             $stmt->execute([ ':limitCredit' => $valeur, ':accountNum' => $id ]);
         }
-
         echo "Account successfully created.";
     }
     public function readAllAccounts() {
@@ -70,5 +69,28 @@ class Account {
         }
         return $accounts;
     }
+    public function delete($id) {
+        try {
+            $sql = "DELETE FROM savingaccount WHERE accountNum = :accountNum";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':accountNum' => $id]);
+    
+            $sql = "DELETE FROM currentaccount WHERE accountNum = :accountNum";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':accountNum' => $id]);
+    
+            $sql = "DELETE FROM businessaccount WHERE accountNum = :accountNum";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':accountNum' => $id]);
+    
+            $sql = "DELETE FROM account WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+    
+            echo "Account with ID $id has been deleted successfully.";
+        } catch (PDOException $e) {
+            echo "Error deleting account: " . $e->getMessage();
+        }
+    }    
 }
 ?>
