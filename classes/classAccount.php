@@ -1,5 +1,6 @@
 <?php
 include './config.php';
+
 class Account {
     public $id;
     public $titulaire; 
@@ -18,7 +19,7 @@ class Account {
         $stmt->execute([ ':titulaire' => $this->titulaire, ':soldeInit' => $this->soldeInit ]);
 
         $id = $this->pdo->lastInsertId();
-        switch ($type) {
+        switch ($type) {  
             case 'SavingAccount':
                 $rqt = "INSERT INTO savingaccount (minimumSolde, accountNum) VALUES (:minimumSolde, :accountNum)";
                 break;
@@ -46,6 +47,28 @@ class Account {
         }
 
         echo "Account successfully created.";
+    }
+    public function readAllAccounts() {
+        $sql = "
+            SELECT a.id, a.titulaire, a.soldeInit, 
+                sa.minimumSolde, 
+                ca.sommeLimit, 
+                ba.limitCredit
+            FROM account a
+            LEFT JOIN savingaccount sa 
+            ON a.id = sa.accountNum
+            LEFT JOIN currentaccount ca 
+            ON a.id = ca.accountNum
+            LEFT JOIN businessaccount ba 
+            ON a.id = ba.accountNum";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    
+        $accounts = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $accounts[] = $row; 
+        }
+        return $accounts;
     }
 }
 ?>

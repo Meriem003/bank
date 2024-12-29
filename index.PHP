@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en">
-<?php
-include('./config.php');
-?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +8,7 @@ include('./config.php');
   <title>Dashboard</title>
 </head>
 <body class="bg-gray-100 h-auto">
-  <div class="flex flex-col md:flex-row h-screen">
+  <div class="flex flex-col md:flex-row h-auto">
     <!-- Sidebar -->
     <aside class="bg-blue-900 text-white w-full md:w-64 flex flex-col">
       <div class="p-4 text-center font-bold text-xl border-b border-blue-700">La banque NeoBank</div>
@@ -23,22 +20,29 @@ include('./config.php');
       </nav>
     </aside>
 </section>
-      <section id="userInfoRow" class="bg-white p-6 rounded-lg shadow-lg max-w-6xl mx-auto mt-8 h-auto">
+      <section id="userInfoRow" class="bg-white p-6 rounded-lg shadow-lg max-w-6xl mx-auto mt-8 h-screen">
           <div>
-          <h1 class="text-2xl font-bold mb-4">Liste des Joueurs</h1>
+          <h1 class="text-2xl font-bold mb-4">Liste des comptes</h1>
 <table id="players-table" class="table-auto border-collapse border border-gray-300 w-full text-sm">
   <thead>
     <tr class="bg-gray-200 max-w-8xl">
-      <th class="border border-gray-300 px-10 py-2">nr compte</th>
-      <th class="border border-gray-300 px-10 py-2">full name</th>
-      <th class="border border-gray-300 px-10 py-2">solde</th>
-      <th class="border border-gray-300 px-10 py-2">type compte</th>
-      <th class="border border-gray-300 px-10 py-2">frias/retrait/taux_Intert</th>
+      <th class="border border-gray-300 px-10 py-2">ID</th>
+      <th class="border border-gray-300 px-10 py-2">nom prénom</th>
+      <th class="border border-gray-300 px-10 py-2">Solde Initial</th>
+      <th class="border border-gray-300 px-10 py-2">Min Solde</th>
+      <th class="border border-gray-300 px-10 py-2">Som Limit</th>
+      <th class="border border-gray-300 px-10 py-2">Lim Credit</th>     
+      <th class="border border-gray-300 px-10 py-2">action</th>
     </tr>
   </thead>
-  
   <tbody>
-  </tbody>
+  <?php
+include './config.php'; 
+include './classes/classAccount.php';
+include './crud./readall.php';
+?>
+
+</tbody>
 </table>
 </div>
 </div>

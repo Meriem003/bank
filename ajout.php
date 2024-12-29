@@ -84,30 +84,11 @@
         <button type="submit" name="envoyer" class="w-full px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-sm focus:outline-none">Créer le compte</button>
     </div>
 </form>
-
 <?php
 include './config.php';
 include './classes/classAccount.php';
-
-if (isset($_POST["envoyer"])) {
-    $titulaire = $_POST["name"];
-    $solde = $_POST["balance"];
-    $type = $_POST["compte"];
-
-    $valeur = null;
-    if ($type == 'SavingAccount') {
-        $valeur = $_POST["minimumBalance"];
-    } elseif ($type == 'CURRENTAccount') {
-        $valeur = $_POST["withdrawalLimit"];
-    } elseif ($type == 'businessAccount') {
-        $valeur = $_POST["creditLimit"];
-    }
-
-    $compte = new Account($titulaire, $solde, $pdo);
-    $compte->créer ($type, $valeur);
-}
+include './crud./addAccount.php';
 ?>
-
 </div>
 </section>
   <script src="../src/scripts/sendRequest.js?v=<?php echo time(); ?>"></script>
